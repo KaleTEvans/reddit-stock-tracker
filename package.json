@@ -1,0 +1,21 @@
+{
+  "name": "reddit-sentiment-tracker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "data.js": "^0.12.11",
+    "dotenv": "^9.0.2",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.1",
+    "snoowrap": "^1.22.0"
+  }
+}
