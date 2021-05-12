@@ -16,6 +16,7 @@
     "dotenv": "^9.0.2",
     "express": "^4.17.1",
     "node-fetch": "^2.6.1",
-    "snoowrap": "^1.22.0"
+    "snoowrap": "^1.22.0",
+    "stock-ticker-symbol": "^1.1.0"
   }
 }

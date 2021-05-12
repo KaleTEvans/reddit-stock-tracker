@@ -13,13 +13,13 @@ const nyseData = () => {
     // get all tabular data(if exists any)
     for (const id in dataset.resources) {
         if (dataset.resources[id]._descriptor.format === "csv") {
-        const file = dataset.resources[id]
-        // Get a raw stream
-        const stream = await file.stream()
-        // entire file as a buffer (be careful with large files!)
-        const buffer = await file.buffer
-        // print data
-        stream.pipe(process.stdout)
+            const file = dataset.resources[id]
+            // Get a raw stream
+            const stream = await file.stream()
+            // entire file as a buffer (be careful with large files!)
+            const buffer = await file.buffer
+            // print data
+            stream.pipe(process.stdout)
         }
     }
     })()

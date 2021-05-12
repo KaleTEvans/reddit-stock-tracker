@@ -2,6 +2,7 @@
 const apiRoutes = require('./routes/apiRoutes');
 //const htmlRoutes = require('./routes/htmlRoutes');
 const { wsbPosts } = require('./index');
+const { nyseData } = require('./db/nyse');
 
 const express = require('express');
 
