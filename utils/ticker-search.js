@@ -1,7 +1,6 @@
 
 
 const findByTicker = (string, tickers) => {
-    //console.log(tickers);
     // filter out symbols attached to string;
     if (string.includes('$')) {
         let newString = string.replace('$', '');
