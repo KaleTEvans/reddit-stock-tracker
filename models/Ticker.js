@@ -12,7 +12,7 @@ Ticker.init (
             primaryKey: true,
             autoIncrement: true
         },
-        ticker: {
+        symbol: {
             type: DataTypes.STRING,
             allowNull: false,
         },

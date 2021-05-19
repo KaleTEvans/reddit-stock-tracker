@@ -1,4 +1,3 @@
-
 // get reddit client info
 require('dotenv').config();
 const snoowrap = require('snoowrap');
@@ -16,6 +15,7 @@ const { stocks } = require('./db/nyse.json');
 const { findByTicker } = require('./utils/ticker-search');
 // sentiment score
 const Sentiment = require('sentiment');
+const Ticker = require('./models/Ticker');
 const sentiment = new Sentiment();
 
 // array to hold posts with tickers
@@ -42,17 +42,17 @@ const postDeconstructor = data => {
             if (returnedTickers) {
                 let sentimentScore = sentiment.analyze(post.title);
                 returnedPosts.push({
-                    stockInfo: {
-                        companyName: returnedTickers['Company Name'],
-                        Ticker: returnedTickers.Symbol
-                    },
-                    redditTitle: post.title,
-                    sentiment: sentimentScore.score
+                    symbol: returnedTickers.Symbol,
+                    company_name: returnedTickers['Company Name'],
+                    reddit_title: post.title,
+                    sentiment_score: sentimentScore.score
                 })
             }
         })
     })
-    console.log(returnedPosts);
+    // send the array to a fetch function to post to sql
+    sqlUpload(returnedPosts);
 }
 
+const sqlUpload = stockObj => Ticker.bulkCreate(stockObj);
 module.exports = { wsbPosts };

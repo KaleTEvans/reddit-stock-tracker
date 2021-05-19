@@ -4,7 +4,7 @@ const router = require('express').Router();
 const snoowrap = require('snoowrap');
 
 // wsb subreddit page
-router.get('/reddit', (req, res) => {
+router.get('/', (req, res) => {
     r.getSubreddit('wallstreetbets').getHot().then(res => res.toJSON())
     .then(data => {
         res.send({ data });

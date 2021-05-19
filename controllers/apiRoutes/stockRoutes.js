@@ -4,13 +4,13 @@ const path = require('path');
 
 const { stocks } = require('../../db/nyse.json');
 
-router.get('/stocks', (req, res) => {
+router.get('/', (req, res) => {
     let results = stocks;
     res.json(results);
 });
 
 // find a stock by a ticker
-router.get('/stocks/:id', (req, res) => {
+router.get('/:id', (req, res) => {
     const result = stocks.filter(stock => stock.Symbol === req.params.id)[0];
     if (!result) {
         console.log('No ticker found');
@@ -24,7 +24,7 @@ router.get('/stocks/:id', (req, res) => {
     "Company Name": 
     "Symbol": 
 */
-router.post('/stocks', (req, res) => {
+router.post('/', (req, res) => {
     // set id to next index
     req.body.id = stocks.length.toString();
 
