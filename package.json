@@ -15,7 +15,10 @@
     "data.js": "^0.12.11",
     "dotenv": "^9.0.2",
     "express": "^4.17.1",
+    "mysql2": "^2.2.5",
     "node-fetch": "^2.6.1",
+    "sentiment": "^5.0.2",
+    "sequelize": "^6.6.2",
     "snoowrap": "^1.22.0",
     "stock-ticker-symbol": "^1.1.0"
   }

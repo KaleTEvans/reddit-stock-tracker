@@ -3,6 +3,9 @@ const fetch = require('node-fetch');
 //const stocks = require('stock-ticker-symbol');
 const { stocks } = require('./db/nyse.json');
 const { findByTicker } = require('./utils/ticker-search');
+// sentiment score
+const Sentiment = require('sentiment');
+const sentiment = new Sentiment();
 
 // array to hold posts with tickers
 const returnedPosts = [];
@@ -26,9 +29,14 @@ const postDeconstructor = data => {
         textArray.forEach(word => {
             let returnedTickers = findByTicker(word, stocks);
             if (returnedTickers) {
+                let sentimentScore = sentiment.analyze(post.title);
                 returnedPosts.push({
-                    stockInfo: returnedTickers,
-                    redditTitle: post.title
+                    stockInfo: {
+                        companyName: returnedTickers['Company Name'],
+                        Ticker: returnedTickers.Symbol
+                    },
+                    redditTitle: post.title,
+                    sentiment: sentimentScore.score
                 })
             }
         })
