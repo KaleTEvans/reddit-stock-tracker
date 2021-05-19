@@ -1,8 +1,9 @@
 
-const apiRoutes = require('./routes/apiRoutes');
+const routes = require('./controllers/');
+const sequelize = require('./config/connection');
 //const htmlRoutes = require('./routes/htmlRoutes');
 const { wsbPosts } = require('./index');
-const { nyseData } = require('./db/nyse');
+// const { nyseData } = require('./db/nyse');
 
 const express = require('express');
 
@@ -16,10 +17,11 @@ app.use(express.json());
 // instruct the server to make all public files readily available
 app.use(express.static('public'));
 
-app.use('/api', apiRoutes);
+app.use(routes);
 //app.use('/', htmlRoutes);
 
-app.listen(PORT, () => {
-    console.log(`API server now on ${PORT}`);
-    wsbPosts();
-});
+// turn on connection to db and server
+sequelize.sync({ force: false }).then(() => {
+    app.listen(PORT, () => console.log('Now listening'));
+    //wsbPosts();
+  });

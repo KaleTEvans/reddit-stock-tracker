@@ -1,4 +1,15 @@
-const r = require('./config/connection');
+
+// get reddit client info
+require('dotenv').config();
+const snoowrap = require('snoowrap');
+
+const r = new snoowrap({
+    userAgent: 'sentiment',
+    clientId: process.env.DB_CLIENTID,
+    clientSecret: process.env.DB_CLIENTSECRET,
+    refreshToken: process.env.DB_REFRESHTOKEN
+});
+
 const fetch = require('node-fetch');
 //const stocks = require('stock-ticker-symbol');
 const { stocks } = require('./db/nyse.json');
