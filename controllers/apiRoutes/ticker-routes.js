@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { sequelize } = require('../../models/Ticker');
 const Ticker = require('../../models/Ticker');
 
 // get all tickers
@@ -12,7 +13,26 @@ router.get('/', (req, res) => {
             'sentiment_score'
         ]
     })
-    .then(dbUserData => res.json(dbUserData))
+    .then(dbStockData => res.json(dbStockData))
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+});
+
+// determine the frequency each ticker has appeared at
+router.get('/count', (req, res) => {
+    Ticker.findAll({
+        attributes: [
+            'symbol',
+            'company_name',
+            [sequelize.fn('COUNT', sequelize.col('symbol')), 'Mentions'],
+            [sequelize.fn('SUM', sequelize.col('sentiment_score')), 'Sentiment'],
+        ],
+        group: ['symbol'],
+        order: [[sequelize.literal('Mentions'), 'DESC']]
+    })
+    .then(dbStockData => res.json(dbStockData))
     .catch(err => {
         console.log(err);
         res.status(500).json(err);

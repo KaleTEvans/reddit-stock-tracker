@@ -1,6 +1,7 @@
 // get reddit client info
 require('dotenv').config();
 const snoowrap = require('snoowrap');
+const cTable = require('console.table');
 
 const r = new snoowrap({
     userAgent: 'sentiment',
@@ -23,7 +24,7 @@ const returnedPosts = [];
 
 const wsbPosts = () => {
     (async () => {
-        let data  = await r.getSubreddit('wallstreetbets').getHot({limit: 100}).then(res => res.toJSON())
+        let data  = await r.getSubreddit('wallstreetbets').getHot({limit: 300}).then(res => res.toJSON())
         return data;
     })()
     .then(data => {
@@ -53,6 +54,21 @@ const postDeconstructor = data => {
     // send the array to a fetch function to post to sql
     sqlUpload(returnedPosts);
 }
-
-const sqlUpload = stockObj => Ticker.bulkCreate(stockObj);
+// upload to sql
+const sqlUpload = stockObj => Ticker.bulkCreate(stockObj)
+    // this is just for data visualization, can remove if just using database
+    .then(() => {
+        fetch('http://localhost:3001/api/tickers/count', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(res => res.json())
+        .then(json => {
+            console.table(json);
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    });
 module.exports = { wsbPosts };

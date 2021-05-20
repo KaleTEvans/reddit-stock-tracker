@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.1",
+    "console.table": "^0.10.0",
     "data.js": "^0.12.11",
     "dotenv": "^9.0.2",
     "express": "^4.17.1",
