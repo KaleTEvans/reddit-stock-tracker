@@ -27,7 +27,7 @@ router.get('/count', (req, res) => {
             'symbol',
             'company_name',
             [sequelize.fn('COUNT', sequelize.col('symbol')), 'Mentions'],
-            [sequelize.fn('SUM', sequelize.col('sentiment_score')), 'Sentiment'],
+            [sequelize.fn('AVG', sequelize.col('sentiment_score')), 'Sentiment'],
         ],
         group: ['symbol'],
         order: [[sequelize.literal('Mentions'), 'DESC']]
