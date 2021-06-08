@@ -16,6 +16,13 @@ uses a sentiment engine to measure the sentiment of each post title containing a
 * Node.Js
 * MySQL (via Sequelize)
 
+## Instructions for use
+* Ensure that you have MySQL downloaded to your device
+* Clone the repository and type `npm install` into the command line to download the required packages
+* Create a .env file in the root of your directory to add your MySQL environment variables
+* You will also need to go to the reddit developer page to create a project account and obtain an access key
+* Once you have all of the required variables, type `npm start` to run the program
+
 ## Images 
 ![](./images/table.jpg)<br />
 
