@@ -23,6 +23,9 @@ uses a sentiment engine to measure the sentiment of each post title containing a
 * You will also need to go to the reddit developer page to create a project account and obtain an access key
 * Once you have all of the required variables, type `npm start` to run the program
 
+## Demo Video
+https://drive.google.com/file/d/1D9bQha67XV8h83xQz5L6rf9hRd2NerE7/view
+
 ## Images 
 ![](./images/table.jpg)<br />
 
